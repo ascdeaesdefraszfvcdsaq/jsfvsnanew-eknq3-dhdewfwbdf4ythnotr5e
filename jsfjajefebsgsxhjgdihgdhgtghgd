@@ -992,7 +992,7 @@ local uiSecs = {}
                     end
                     end)
 
-                    uiSecs.Buys:addToggle("Tc Armor", nil, function()
+                    uiSecs.Buys:addButton("Tc Armor", function()
                         game.Players.LocalPlayer.Backpack.ServerTraits.ChatStart:FireServer(game.Workspace.FriendlyNPCs["TC Armor"])
                         wait(0.35)
                         local A_1 = {
@@ -1014,7 +1014,7 @@ local uiSecs = {}
                         Event:FireServer(A_1)
                         end)
 
-                        uiSecs.Buys:addToggle("Aqua Gi", nil, function()
+                        uiSecs.Buys:addButton("Aqua Gi", function()
                             game.Players.LocalPlayer.Backpack.ServerTraits.ChatStart:FireServer(
                                     game.Workspace.FriendlyNPCs["Aqua Gi"]
                                 )
@@ -1152,7 +1152,7 @@ local uiSecs = {}
                                         end
                                         end)
 
-                                        uiSecs.Main:addButton("Top Respawn", function(TopRespawn)
+                                        uiSecs.Main:addToggle("Top Respawn", nil, function(TopRespawn)
                                             if TopRespawn == true then
                                                 respawn = true
                                                 while respawn do
@@ -1814,7 +1814,7 @@ local uiSecs = {}
                                                                                                     Event:FireServer(A_1)
                                                                                             end);
 
-                                                                                                uiSecs.Main:addToggle("Rejoin Server", nil, function()
+                                                                                                uiSecs.Main:addButton("Rejoin Server", function()
                                                                                                     game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
                                                                                                     end)
                                                                                                     uiSecs.Beans:addDropdown("Beans", {"Stop Buying", "Red Beans", "Green Beans", "Blue Beans", "Yellow Beans"}, function(Beans)
@@ -2467,49 +2467,103 @@ local uiSecs = {}
                                                                                                         game.CoreGui["Zeros"]:Destroy()
                                                                                                     end)
 
---start rojust                                                                                              
-    elseif game.GameId == 2471108162 then
+--start king legacy
+ elseif game.GameId == 1451439645 then
     uiPages.page = Zeros:addPage("Main")
     uiSecs.Main = uiPages.page:addSection("Main")
     uiPages.page = Zeros:addPage("Player")
     uiSecs.Player = uiPages.page:addSection("Player")
-    uiPages.page = Zeros:addPage("Close hub")
-    uiSecs.Closehub = uiPages.page:addSection("Close hub")
+    uiPages.page = Zeros:addPage("Teleports")
+    uiSecs.Teleports = uiPages.page:addSection("Teleports")
+    uiPages.page = Zeros:addPage("Stats")
+    uiSecs.Stats = uiPages.page:addSection("Stats")
 
-    uiSecs.Main:addToggle("Kill Aura", nil, function(v)
-        getgenv().Aura = v
+    uiSecs.Stats:addToggle("Auto Defense", nil, function(v)
+    getgenv().Defense = v
         while true do
-            if not getgenv().Aura then return end        
-                local args = {
-                    [1] = "No"
-                }
-                
-                workspace.EventHolder.Combat_Damage.Reactor:FireServer(unpack(args))
-                
-                
-                local args = {
-                    [1] = "No"
-                }
-                
-                workspace.EventHolder.Combat_Damage.Reactor:FireServer(unpack(args))
-                wait(0.1)
-                end
-                end)
+            if not getgenv().Defense then return end
+            local args = {
+                [1] = "Defense",
+                [2] = 1
+            }
 
-    uiSecs.Main:addToggle("Auto Farm", nil, function(t)
-        autofarm2 = t
-        while autofarm2 do wait()
-        pcall(function()
-        for i,v in pairs(workspace:GetChildren()) do
-            if v.Name == npc and game.Players.LocalPlayer.PlayerGui.Quest.Enabled ~= false then
-             repeat
-                 wait()
-               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame + v.HumanoidRootPart.CFrame.lookVector * -2
-        until v.Humanoid.Health <= 0 or autofarm2 == false
+            game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
+
+            wait(0.5)
             end
+            end)
+
+    uiSecs.Stats:addToggle("Auto Melee", nil, function(v)
+    getgenv().Melee = v
+        while true do
+            if not getgenv().Melee then return end
+            local args = {
+                [1] = "Melee",
+                [2] = 1
+            }
+
+            game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
+            wait(0.5)
             end
-             end)
-           end
+            end)
+
+    uiSecs.Stats:addToggle("Auto Sword", nil, function(v)
+    getgenv().Sword = v
+        while true do
+            if not getgenv().Sword then return end
+            local args = {
+                [1] = "Sword",
+                [2] = 1
+            }
+
+            game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
+            wait(0.5)
+            end
+            end)
+
+    uiSecs.Stats:addToggle("Auto Devil Fruit", nil, function(v)
+    getgenv().DevilFruit = v
+        while true do
+            if not getgenv().DevilFruit then return end
+            local args = {
+                [1] = "Devil Fruit",
+                [2] = 1
+            }
+            
+            game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
+            wait(0.5)
+            end
+            end)
+
+    uiSecs.Player:addSlider("WalkSpeed", 16, 16, 1000, function(v)
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+            end)
+
+    uiSecs.Player:addSlider("JumpPower", 50, 50, 1000, function(v)
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+            end)
+
+    uiSecs.Main:addToggle("Auto Buso", nil, function(v)
+    getgenv().Buso = v
+        while true do
+            if not getgenv().Buso then return end
+            game:GetService("Players").LocalPlayer.Character.Services.Client.Armament:FireServer()
+            wait(500.5)
+            end
         end)
+
+        uiSecs.Main:addButton("Coffin Boat", function(v)
+            getgenv().Boat = v
+                while true do
+                    if not getgenv().Boat then return end
+                    local args = {
+                        [1] = "CoffinBoat",
+                        [2] = "ShipA"
+                    }
+
+                    game:GetService("ReplicatedStorage").Remotes.Events.Ship:FireServer(unpack(args))
+                    wait(500.5)
+                    end
+                end)
 
 end
