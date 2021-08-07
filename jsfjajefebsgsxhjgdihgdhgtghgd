@@ -4,7 +4,7 @@ end
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Zeros";
-    Text = "send vandell900#0001 your dick size and dick picks please for me making this hub :D";
+    Text = "join the discord server for help and other things https://discord.gg/R7ehEtsKae";
     Duration = 10;
     })
 
