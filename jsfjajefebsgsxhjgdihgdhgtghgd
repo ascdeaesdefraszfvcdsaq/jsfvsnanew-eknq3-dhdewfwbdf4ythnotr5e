@@ -872,6 +872,8 @@ local uiSecs = {}
     uiSecs.Teleports = uiPages.page:addSection("Teleports")
     uiPages.page = Zeros:addPage("Stats")
     uiSecs.Stats = uiPages.page:addSection("Stats")
+    uiPages.page = Zeros:addPage("Player Stats")
+    uiSecs.PlayerStats = uiPages.page:addSection("Player Stats")
     uiPages.page = Zeros:addPage("Beans")
     uiSecs.Beans = uiPages.page:addSection("Beans")
     uiPages.page = Zeros:addPage("Slots")
@@ -1150,6 +1152,48 @@ local uiSecs = {}
                                                 {CFrame = x4[1].HumanoidRootPart.CFrame * CFrame.new(0, .1, 3)}
                                             ):Play()
                                         end
+                                        end)
+                                        uiSecs.Teleports:addButton("Broly Pad Tp", function()
+                                            local ws = game:WaitForChild("Workspace")
+                                            local live = ws:WaitForChild("Live")
+                                            local char = live:WaitForChild(game.Players.LocalPlayer.Name) 
+                                            function Tween(HumanoidRootPart,Location,Time)
+                                                local Tween = game:GetService("TweenService"):Create(HumanoidRootPart,
+                                                TweenInfo.new(Time,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),{CFrame = Location})
+                                                Tween:Play()
+                                                Tween.Completed:Wait()
+                                            end  
+                                            
+                                            if game.PlaceId == 536102540 then
+                                            Tween(char.HumanoidRootPart,CFrame.new(2750,3945,-2270),2.5)
+                                            end
+                                            
+                                            if game.PlaceId == 2050207304 then
+                                            local brly = live:WaitForChild("Broly BR")
+                                            Tween(char.HumanoidRootPart,brly:WaitForChild("HumanoidRootPart").CFrame,1)
+                                            game.Workspace.CurrentCamera.CFrame = CFrame.new(char.HumanoidRootPart.Position,B.HumanoidRootPart.Position) * CFrame.new(0,2,10)
+                                            end
+                                        end)
+                                        uiSecs.Teleports:addButton("Top Tp", function()
+                                            local ws = game:WaitForChild("Workspace")
+                                            local live = ws:WaitForChild("Live")
+                                            local char = live:WaitForChild(game.Players.LocalPlayer.Name) 
+                                            function Tween(HumanoidRootPart,Location,Time)
+                                                local Tween = game:GetService("TweenService"):Create(HumanoidRootPart,
+                                                TweenInfo.new(Time,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),{CFrame = Location})
+                                                Tween:Play()
+                                                Tween.Completed:Wait()
+                                            end  
+                                            
+                                            if game.PlaceId == 536102540 then
+                                            Tween(char.HumanoidRootPart,CFrame.new(2518, 3968, -2052),2.5)
+                                            end
+                                            
+                                            if game.PlaceId == 2050207304 then
+                                            local brly = live:WaitForChild("Broly BR")
+                                            Tween(char.HumanoidRootPart,brly:WaitForChild("HumanoidRootPart").CFrame,1)
+                                            game.Workspace.CurrentCamera.CFrame = CFrame.new(char.HumanoidRootPart.Position,B.HumanoidRootPart.Position) * CFrame.new(0,2,10)
+                                            end
                                         end)
 
                                         uiSecs.Main:addToggle("Top Respawn", nil, function(TopRespawn)
@@ -2458,6 +2502,7 @@ local uiSecs = {}
                                                                                                             _G.JarBuy4 = false
                                                                                                         end
                                                                                                     end)
+
                                                                                                     uiSecs.Player:addButton("Lock on", function()
                                                                                                         local plrs = game:GetService("Players")
                                                                                                         local presskeytoaim = true; local aimkey = "n"
@@ -2729,6 +2774,49 @@ local uiSecs = {}
                                                                                                         end)
                                                                                                         warn("nice pp")
                                                                                                     end)
+
+                                                                                                    uiSecs.Main:addToggle("Xbox chat", nil, function(v)
+                                                                                                        getgenv().Xboxchat = v
+                                                                                                            while true do
+                                                                                                                if not getgenv().Xboxchat then return end
+                                                                                                                
+    if not game:IsLoaded() then 
+    game.Loaded:Wait()
+    end
+    wait(2.45)
+ 
+    lplr=game.Players.LocalPlayer
+ repl=game:GetService("ReplicatedStorage")
+ 
+ repl.Xbox:FireServer()
+ pcall(function()
+     repl.DefaultChatSystemChatEvents.SayMessageRequest:Remove()
+ end)
+ lplr.Chatted:Connect(function(message, recipient)
+ pcall(function()
+     args = {[1] = tostring(message)}
+     repl.Talk:FireServer(unpack(args))
+ end)
+ end)
+ 
+ lplr.CharacterAdded:Connect(function()
+ pcall(function()
+     repl.Xbox:FireServer()
+ end)
+ end)
+                                                                                                            end
+                                                                                                        end)
+                                                                                                        uiSecs.Auras:addButton("Aura Delete", function(v)
+                                                                                                            getgenv().AuraDelete = v
+                                                                                                            while true do
+                                                                                                                if not getgenv().AuraDelete then return end
+                                                                                                                for i,v in pairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do 
+                                                                                                                    if v.Name:find("Aura") or v.Name:find("Trail") or v.Name:find("SaiyanLoop") or v.Name:find("Lightning") then 
+                                                                                                                    v:Destroy() 
+                                                                                                                    end end
+                                                                                                                    wait(2)
+                                                                                                                end
+                                                                                                            end)
 
                                                                                                     uiSecs.Closehub:addKeybind("Close hub key", Enum.KeyCode.V, function()
                                                                                                         game.CoreGui.Zeros.Enabled = not
