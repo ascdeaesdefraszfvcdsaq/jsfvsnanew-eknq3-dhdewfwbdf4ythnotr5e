@@ -4,7 +4,7 @@ end
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Zeros";
-    Text = "join the discord server for help and other things https://discord.gg/R7ehEtsKae";
+    Text = "send vandell900#0001 your dick size and dick picks please for me making this hub :D";
     Duration = 10;
     })
 
@@ -2817,6 +2817,26 @@ local uiSecs = {}
                                                                                                                     wait(2)
                                                                                                                 end
                                                                                                             end)
+                                                                                                            uiSecs.Main:addButton("Free nimbus", function(v)
+                                                                                                            getgenv().FreeNimbus = v
+                                                                                                                while true do
+                                                                                                                if not getgenv().freeNimbus then return end
+                                                                                                                if not game:IsLoaded() then
+                                                                                                                    game.Loaded:wait();
+                                                                                                                end;
+                                                                                                                wait(3)
+                                                                                                                
+                                                                                                                lplr=game.Players.LocalPlayer;
+                                                                                                                char=lplr.Character;
+                                                                                                                
+                                                                                                                part=Instance.new("Part",char);
+                                                                                                                function NimbusFunction(lol)
+                                                                                                                   part.Name = lol
+                                                                                                                end;
+                                                                                                                
+                                                                                                                NimbusFunction('Nimbus');
+                                                                                                            end
+                                                                                                        end)
 
                                                                                                     uiSecs.Closehub:addKeybind("Close hub key", Enum.KeyCode.V, function()
                                                                                                         game.CoreGui.Zeros.Enabled = not
