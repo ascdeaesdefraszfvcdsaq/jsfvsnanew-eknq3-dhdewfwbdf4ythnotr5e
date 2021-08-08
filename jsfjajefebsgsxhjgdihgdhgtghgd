@@ -2817,7 +2817,7 @@ local uiSecs = {}
                                                                                                                     wait(2)
                                                                                                                 end
                                                                                                             end)
-                                                                                                            uiSecs.Main:addButton("Free nimbus", function(v)
+                                                                                                            uiSecs.Main:addButton("Free NimBus", function(v)
                                                                                                             getgenv().FreeNimbus = v
                                                                                                                 while true do
                                                                                                                 if not getgenv().freeNimbus then return end
@@ -2835,6 +2835,14 @@ local uiSecs = {}
                                                                                                                 end;
                                                                                                                 
                                                                                                                 NimbusFunction('Nimbus');
+                                                                                                            end
+                                                                                                        end)
+                                                                                                        uiSecs.Removes:addButton("No Power Level", function(v)
+                                                                                                        getgenv().nopowerlevel = v
+                                                                                                            while true do
+                                                                                                            if not getgenv().nopowerlevel then return end
+                                                                                                            lplr=game.Players.LocalPlayer;
+                                                                                                            game.Workspace.Live[lplr.Name].HumanoidRootPart["PowerLevel"]:Destroy()
                                                                                                             end
                                                                                                         end)
 
